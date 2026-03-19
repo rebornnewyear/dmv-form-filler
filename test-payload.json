@@ -1,0 +1,39 @@
+{
+  "vehicleInfo": {
+    "licensePlate": "7ABC123",
+    "make": "Toyota",
+    "vin": "1HGBH41JXMN109186",
+    "dpPlacardNumber": "",
+    "birthDate": "",
+    "engineNumber": ""
+  },
+  "ownerInfo": {
+    "fullName": "Doe, John Michael",
+    "dlNumber": "",
+    "coOwnerFullName": "",
+    "coOwnerDlNumber": "",
+    "physicalAddress": {
+      "street": "1234 Sunset Blvd",
+      "apt": "5",
+      "city": "Los Angeles",
+      "state": "CA",
+      "zip": "90028"
+    },
+    "county": "Los Angeles"
+  },
+  "itemsRequested": {
+    "licensePlates": true,
+    "registrationCard": true
+  },
+  "reason": {
+    "type": "lost",
+    "explanation": ""
+  },
+  "certification": {
+    "name": "John Michael Doe",
+    "title": "Owner",
+    "phone": "5551234567",
+    "date": "03/18/2026",
+    "email": "john.doe@example.com"
+  }
+}
