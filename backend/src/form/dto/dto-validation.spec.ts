@@ -132,8 +132,29 @@ describe('ReasonDto', () => {
 });
 
 describe('FormDataDto', () => {
+  const validForm = {
+    vehicleInfo: { licensePlate: '7ABC123', make: 'Toyota', vin: '1HGBH41JXMN109186' },
+    ownerInfo: {
+      fullName: 'Doe, John',
+      physicalAddress: { street: '123 Main', city: 'LA', state: 'CA', zip: '90001' },
+    },
+    itemsRequested: { licensePlates: true },
+    reason: { type: 'lost' },
+    certification: { name: 'John Doe', phone: '5551234567', date: '01/01/2026' },
+  };
+
   it('fails when vehicleInfo is missing', async () => {
     const errs = await validateDto(FormDataDto, {});
     expect(errs.length).toBeGreaterThan(0);
+  });
+
+  it('fails when no items are selected', async () => {
+    const errs = await validateDto(FormDataDto, { ...validForm, itemsRequested: {} });
+    expect(errs.some((m) => m.toLowerCase().includes('at least one item'))).toBe(true);
+  });
+
+  it('passes when at least one item is selected', async () => {
+    const errs = await validateDto(FormDataDto, validForm);
+    expect(errs).toHaveLength(0);
   });
 });
