@@ -142,8 +142,16 @@ chmod +x start.sh
 ### Manual Start
 
 ```bash
+npm start
+```
+
+Or equivalently:
+
+```bash
 npm run dev
 ```
+
+Both commands launch the backend and frontend concurrently.
 
 Once running:
 
@@ -266,7 +274,7 @@ This endpoint can be tested directly with tools like Postman or curl.
 Validation is implemented on **both** layers:
 
 - **Frontend (Zod)**: Provides immediate, per-step feedback as the user navigates the form wizard. Each step has its own schema, enabling partial validation. A snackbar notification appears when required fields are missing.
-- **Backend (class-validator)**: Guards the API boundary independently. Uses `@Transform` decorators to normalize empty strings to `undefined` for optional fields, and `@IsDefined` + `@ValidateNested` to enforce presence of nested objects.
+- **Backend (class-validator)**: Guards the API boundary independently. Uses `@Transform` decorators to normalize empty strings to `undefined` for optional fields, `@IsDefined` + `@ValidateNested` to enforce presence of nested objects, and a custom `AtLeastOneItemConstraint` to ensure at least one checkbox is selected in Items Requested.
 
 This ensures the API remains safe even when called outside the browser (e.g., Postman, scripts).
 
@@ -296,9 +304,9 @@ Start/stop scripts for both Windows and macOS/Linux handle cleanup of orphaned N
 
 | Script | Description |
 |--------|-------------|
-| `npm run dev` | Start both backend and frontend in development mode |
+| `npm start` | Start both backend and frontend in development mode |
+| `npm run dev` | Same as `npm start` |
 | `npm run build` | Build shared → backend → frontend for production |
-| `npm start` | Start the production backend server |
 | `npm test` | Run all tests |
 | `npm run test:backend` | Run backend tests only |
 | `npm run test:frontend` | Run frontend tests only |
